@@ -2,11 +2,12 @@
 
 class NeuralAlleleAction
 
-	def initialize
+	def initialize(dominance)
 		@gather_plants_chance 	= rand(100).to_f / 100
 		@gather_insects_chance 	= rand(100).to_f / 100
 		@gather_fish_chance	 	= rand(100).to_f / 100
 		@attack_chance 			= rand(100).to_f / 100
+		@dominance 				= dominance
 
 		sum = @gather_plants_chance + @gather_insects_chance + @gather_fish_chance + @attack_chance
 		

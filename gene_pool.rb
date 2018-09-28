@@ -1,3 +1,7 @@
+require 'neural_allele_action'
+require 'neural_allele_attack'
+require 'neural_allele_defense'
+
 class GenePool
 
 	def initialize
@@ -11,9 +15,9 @@ class GenePool
 		@attack_neural_alleles = []
 		@defense_neural_alleles = []
 
-		NUMBER_OF_ALLELES.times { @action_neural_alleles << NeuralAlleleAction.new }
-		NUMBER_OF_ALLELES.times { @attack_neural_alleles << NeuralAlleleAttack.new }
-		NUMBER_OF_ALLELES.times { @defense_neural_alleles << NeuralAlleleDefense.new }
+		NUMBER_OF_ALLELES.times { |i| @action_neural_alleles << NeuralAlleleAction.new(i) }
+		NUMBER_OF_ALLELES.times { |i| @attack_neural_alleles << NeuralAlleleAttack.new(i) }
+		NUMBER_OF_ALLELES.times { |i| @defense_neural_alleles << NeuralAlleleDefense.new(i) }
 	end
 
 end

@@ -2,7 +2,7 @@ class OnlineEvolution
 
 	def initialize
 		@max_generations = 500
-		@population = nil
+		@species = []
 	end
 
 	# main loop

@@ -1,0 +1,6 @@
+1. Generate gene pool
+2. Generate population
+	for each species
+		set starting genes
+		generate animal with genes - pass genes
+		
