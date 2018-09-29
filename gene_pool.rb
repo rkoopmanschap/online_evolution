@@ -45,4 +45,19 @@ class GenePool
 		return nil
 	end
 
+	# takes all genes and returns a subset of them
+	def select_genes
+		result = {}
+
+		result[:action_neural_alleles] = @action_neural_alleles.sample(10)
+		result[:target_neural_alleles] = @target_neural_alleles.sample(10)
+		result[:defense_neural_alleles] = @defense_neural_alleles.sample(10)
+
+		NUMBER_OF_PHYSICAL_GENES.times do |time|
+			result["physical_allele_#{time}".to_sym] = @physical_genes[time].sample(10)
+		end
+
+		return result
+	end
+
 end
