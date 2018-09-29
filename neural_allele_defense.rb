@@ -11,6 +11,17 @@ class NeuralAlleleDefense
 		
 		@run_chance = @run_chance / sum 
 		@counter_attack_chance = @counter_attack_chance / sum 
+
+		@run_chance_cumulative_chance = @run_chance
+		@counter_attack_chance_cumulative_chance = @counter_attack_chance + @run_chance_cumulative_chance
 	end
 
+	def to_s
+		puts "@run_chance                               = #{@run_chance.round(2)}"
+		puts "@counter_attack_chance                    = #{@counter_attack_chance.round(2)}"
+		puts "@dominance                                = #{@dominance}"
+
+		puts "@run_chance_cumulative_chance             = #{@run_chance_cumulative_chance.round(2)}"
+		puts "@counter_attack_chance_cumulative_chance  = #{@counter_attack_chance_cumulative_chance}"
+	end
 end

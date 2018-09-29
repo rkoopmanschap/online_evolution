@@ -1,6 +1,8 @@
-require 'neural_allele_action'
-require 'neural_allele_attack'
-require 'neural_allele_defense'
+load './physical_gene.rb'
+load './neural_allele_action.rb'
+load './neural_allele_target.rb'
+load './neural_allele_defense.rb'
+require './config.rb'
 
 class GenePool
 
@@ -12,12 +14,35 @@ class GenePool
 		end
 
 		@action_neural_alleles = []
-		@attack_neural_alleles = []
+		@target_neural_alleles = []
 		@defense_neural_alleles = []
 
 		NUMBER_OF_ALLELES.times { |i| @action_neural_alleles << NeuralAlleleAction.new(i) }
-		NUMBER_OF_ALLELES.times { |i| @attack_neural_alleles << NeuralAlleleAttack.new(i) }
+		NUMBER_OF_ALLELES.times { |i| @target_neural_alleles << NeuralAlleleTarget.new(i) }
 		NUMBER_OF_ALLELES.times { |i| @defense_neural_alleles << NeuralAlleleDefense.new(i) }
+	end
+
+	def to_s
+		puts "Action Neural Genes:"
+		@action_neural_alleles[0].to_s
+		puts ""
+		
+		puts "target Neural Genes:"
+		@target_neural_alleles[0].to_s
+		puts ""
+
+		puts "Defense Neural Genes:"
+		@defense_neural_alleles[0].to_s
+		puts ""
+
+		puts "Physical Genes:"
+		@physical_genes.each_with_index do |physical_gene, i|
+			puts "Physical gene #{i}: "
+			puts physical_gene.to_s
+			puts ""
+		end
+
+		return nil
 	end
 
 end
