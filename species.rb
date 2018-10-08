@@ -9,6 +9,7 @@ class Species
 		NUMBER_OF_ANIMALS.times do
 			genome = available_genes.make_genome
 			@animals << Animal.new(genome)
+			puts "new animal: #{@animals.last}"
 		end
 	end
 
@@ -26,8 +27,8 @@ class Species
 		genome.add(:neural_allele_pair_defense, available_genes[:defense_neural_alleles].sample(1))
 
 		NUMBER_OF_PHYSICAL_GENES.times do |time|
-			genome.add("physical_allele_#{time}".to_sym, available_genes["physical_allele_#{time}".to_sym].sample(1))
-			genome.add("physical_allele_#{time}".to_sym, available_genes["physical_allele_#{time}".to_sym].sample(1))
+			genome.add("physical_allele".to_sym, available_genes["physical_allele_#{time}".to_sym].sample(1), time)
+			genome.add("physical_allele".to_sym, available_genes["physical_allele_#{time}".to_sym].sample(1), time)
 		end
 
 		return genome

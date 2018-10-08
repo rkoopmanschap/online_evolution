@@ -1,10 +1,13 @@
 class Animal
 
-	def initialize(genome)
-		# Set physical attributes
-		@physical_allele_pairs = genome[:physical_allele_pairs] # 2 dimensional array of size (PHYSICAL_genome, 2)
+dominant_physical_alleles
+dominant_action_neural_allele
 
-		dominant_physical_alleles = Animal.get_dominant_genome(@physical_allele_pairs)
+	def initialize(genome)
+		@genome = genome
+
+		# Set physical attributes
+		dominant_physical_alleles = genome.dominant_physical_alleles
 
 		# add random bonus?
 		@gather_plants 	= 0
@@ -26,13 +29,9 @@ class Animal
 		end
 
 		# Set neural attributes
-		@neural_allele_pair_action 	= genome[:neural_allele_pair_action] # array of 2 alleles
-		@neural_allele_pair_defense = genome[:neural_allele_pair_defense]
-		@neural_allele_pair_target 	= genome[:neural_allele_pair_target]
-
-		dominant_neural_allele_action = Animal.get_dominant_alleles([@neural_allele_action_pair_action])[0]
-		dominant_neural_allele_defense = Animal.get_dominant_alleles([@neural_allele_action_pair_defense])[0]
-		dominant_neural_allele_target = Animal.get_dominant_alleles([@neural_allele_action_pair_target])[0]s
+		dominant_neural_allele_action 	= genome.dominant_action_neural_allele
+		dominant_neural_allele_defense = genome.dominant_defense_neural_allele
+		dominant_neural_allele_target 	= genome.dominant_target_neural_allele
 
 		# neural gene action
 		@gather_plants_chance 	= dominant_neural_allele_action.gather_plants_chance
@@ -67,15 +66,5 @@ class Animal
 	# ===================
 			private
 	# ===================
-
-	def self.get_dominant_alleles(allele_pairs)
-		result = []
-
-		allele_pairs.each do |allele_pair|
-			result << (allele_pair[0].dominance > allele_pair[1].dominance) ? allele_pair[0] : allele_pair[1]
-		end
-
-		return result
-	end
 
 end
