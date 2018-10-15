@@ -1,9 +1,3 @@
-load './physical_gene.rb'
-load './neural_allele_action.rb'
-load './neural_allele_target.rb'
-load './neural_allele_defense.rb'
-require './config.rb'
-
 class GenePool
 
 	def initialize

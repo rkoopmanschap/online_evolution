@@ -9,9 +9,13 @@ class Species
 		NUMBER_OF_ANIMALS.times do
 			genome = make_genome(available_genes)
 			@animals << Animal.new(genome)
-			puts "new animal: #{@animals.last}"
 		end
 	end
+
+	def print
+		@animals[0].print
+	end
+
 
 	# takes a subset of genes and returns a genome for a single animal
 	def make_genome(available_genes)

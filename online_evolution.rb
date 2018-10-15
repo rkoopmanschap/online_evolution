@@ -1,21 +1,41 @@
+load './initializer.rb'
+
 class OnlineEvolution
 
 	def initialize
-		@max_generations = 500
 		@species = []
+		@gene_pool = GenePool.new
+
+		NUMBER_OF_SPECIES.times do
+			@species.push(Species.new(@gene_pool))
+		end
+	end
+
+	def visualize
+		puts "=================="
+		@species.each do |species|
+			species.print
+		end
+		puts "=================="
+	end
+
+	def process_generation
+
+	end
+
+	def process_evolution
+
 	end
 
 	# main loop
 	def start
-		@population = Initializer.create_new_population
+		visualize
 
-		# @population = Population.create_population(NUMBER_OF_SPECIES, NUMBER_OF_ANIMALS)
-		
-		@max_generations.times do |time_step|
-			@population.process_generation
+		NUMBER_OF_GENERATIONS.times do |time|
+			process_generation
+			process_evolution
+			visualize
 		end
-
-		@population.print
 	end
 end
 

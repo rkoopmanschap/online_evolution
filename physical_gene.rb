@@ -1,5 +1,3 @@
-load './physical_allele.rb'
-
 class PhysicalGene
 
 	attr_reader :alleles
