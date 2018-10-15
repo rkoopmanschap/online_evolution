@@ -1,8 +1,5 @@
 class Animal
 
-dominant_physical_alleles
-dominant_action_neural_allele
-
 	def initialize(genome)
 		@genome = genome
 
@@ -18,7 +15,7 @@ dominant_action_neural_allele
 		@camouflage		= 0
 		@speed			= 0
 
-		@dominant_physical_alleles.each do |dominant_physical_allele|
+		dominant_physical_alleles.each do |dominant_physical_allele|
 			@gather_plants 	+= dominant_physical_allele.gather_plants
 			@gather_insects += dominant_physical_allele.gather_insects
 			@gather_fish 	+= dominant_physical_allele.gather_fish
@@ -34,14 +31,14 @@ dominant_action_neural_allele
 		dominant_neural_allele_target 	= genome.dominant_target_neural_allele
 
 		# neural gene action
-		@gather_plants_chance 	= dominant_neural_allele_action.gather_plants_chance
-		@gather_insects_chance 	= dominant_neural_allele_action.gather_insects_chance
-		@gather_fish_chance	 	= dominant_neural_allele_action.gather_fish_chance
-		@attack_chance 			= dominant_neural_allele_action.attack_chance
+		@gather_plants_cumulative_chance 	= dominant_neural_allele_action.gather_plants_cumulative_chance
+		@gather_insects_cumulative_chance 	= dominant_neural_allele_action.gather_insects_cumulative_chance
+		@gather_fish_cumulative_chance	 	= dominant_neural_allele_action.gather_fish_cumulative_chance
+		@attack_cumulative_chance 			= dominant_neural_allele_action.attack_cumulative_chance
 
 		# neural gene defense
-		@run_chance 			= dominant_neural_allele_defense.run_chance
-		@counter_attack_chance 	= dominant_neural_allele_defense.counter_attack_chance
+		@run_cumulative_chance 			= dominant_neural_allele_defense.run_cumulative_chance
+		@counter_attack_cumulative_chance 	= dominant_neural_allele_defense.counter_attack_cumulative_chance
 
 		# neural gene target
 		@speed_multiplier	 	= dominant_neural_allele_target.normalized_speed_multiplier
@@ -60,6 +57,16 @@ dominant_action_neural_allele
 			return :run
 		else
 			return :counter_attack
+		end
+	end
+
+	def determine_action
+		number = rand(100).to_f / 100
+
+		if number < @gather_plants_cumulative_chance then return :gather_plants
+		elsif number < @gather_insects_cumulative_chance then return :gather_insects
+		elsif number < @gather_fish_cumulative_chance then return :gather_fish
+		else return :attack
 		end
 	end
 

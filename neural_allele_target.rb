@@ -2,6 +2,8 @@
 
 class NeuralAlleleTarget
 	
+	attr_reader :dominance, :normalized_speed_multiplier, :normalized_attack_multiplier, :normalized_nutrition_multiplier
+
 	def initialize(dominance)
 		@speed_multiplier	 	= rand(200).to_f / 100
 		@attack_multiplier	 	= rand(200).to_f / 100

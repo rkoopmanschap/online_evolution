@@ -1,9 +1,11 @@
+load './gene_pool.rb'
 load './species.rb'
 load './genome.rb'
 load './physical_gene.rb'
 load './neural_allele_action.rb'
 load './neural_allele_target.rb'
 load './neural_allele_defense.rb'
+load './animal.rb'
 
 
 # initializes a population

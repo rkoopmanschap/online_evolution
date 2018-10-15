@@ -2,6 +2,8 @@
 
 class NeuralAlleleAction
 
+	attr_reader :dominance, :gather_plants_cumulative_chance, :gather_insects_cumulative_chance, :gather_fish_cumulative_chance, :attack_cumulative_chance
+
 	def initialize(dominance)
 		@gather_plants_chance 	= rand(100).to_f / 100
 		@gather_insects_chance 	= rand(100).to_f / 100
@@ -20,16 +22,6 @@ class NeuralAlleleAction
 		@gather_insects_cumulative_chance = @gather_insects_chance + @gather_plants_cumulative_chance
 		@gather_fish_cumulative_chance = @gather_fish_chance + @gather_insects_cumulative_chance
 		@attack_cumulative_chance = @attack_chance + @gather_fish_cumulative_chance
-	end
-
-	def determine_action
-		number = rand(100).to_f / 100
-
-		if number < @gather_plants_cumulative_chance then return :gather_plants
-		elsif number < @gather_insects_cumulative_chance then return :gather_insects
-		elsif number < @gather_fish_cumulative_chance then return :gather_fish
-		else return :attack
-		end
 	end
 
 	def to_s

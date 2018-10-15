@@ -34,15 +34,18 @@ class Genome
 	end
 
 	def dominant_action_neural_allele
-		return @neural_allele_pair_action.max_by { |allele| allele["dominance"] }
+		puts "@neural_allele_pair_action = #{@neural_allele_pair_action}"
+		return @neural_allele_pair_action.max_by { |allele| puts "allele.class = #{allele.class}"; allele.dominance }
 	end
 
 	def dominant_defense_neural_allele
-		return @neural_allele_pair_action.max_by { |allele| allele["dominance"] }
+		puts "@neural_allele_pair_defense = #{@neural_allele_pair_defense}"
+		return @neural_allele_pair_defense.max_by { |allele| puts "allele.class = #{allele.class}"; allele.dominance }
 	end
 
 	def dominant_target_neural_allele
-		return @neural_allele_pair_action.max_by { |allele| allele["dominance"] }
+		puts "@neural_allele_pair_target = #{@neural_allele_pair_target}"
+		return @neural_allele_pair_target.max_by { |allele| puts "allele.class = #{allele.class}"; allele.dominance }
 	end
 
 end

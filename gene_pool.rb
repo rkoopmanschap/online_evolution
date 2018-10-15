@@ -35,6 +35,7 @@ class GenePool
 		@defense_neural_alleles[0].to_s
 		puts ""
 
+		puts "number of physical genes = #{@physical_genes.size}"
 		puts "Physical Genes:"
 		@physical_genes.each_with_index do |physical_gene, i|
 			puts "Physical gene #{i}: "
@@ -54,7 +55,7 @@ class GenePool
 		result[:defense_neural_alleles] = @defense_neural_alleles.sample(10)
 
 		NUMBER_OF_PHYSICAL_GENES.times do |time|
-			result["physical_allele_#{time}".to_sym] = @physical_genes[time].sample(10)
+			result["physical_allele_#{time}".to_sym] = @physical_genes[time].alleles.sample(10)
 		end
 
 		return result
