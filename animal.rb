@@ -17,6 +17,9 @@ class Animal
 		@nutrition		= 0
 		@cost			= 0
 
+		@wounds = 0
+		@dead = false
+
 		dominant_physical_alleles.each do |dominant_physical_allele|
 			@gather_plants 	+= dominant_physical_allele.gather_plants
 			@gather_insects += dominant_physical_allele.gather_insects

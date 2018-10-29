@@ -1,5 +1,7 @@
 class Species
 
+	attr_accessor :animals
+
 	def initialize(gene_pool)
 		@animals = []
 
