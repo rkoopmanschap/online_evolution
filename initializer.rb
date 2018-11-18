@@ -1,3 +1,4 @@
+load './world.rb'
 load './gene_pool.rb'
 load './species.rb'
 load './genome.rb'

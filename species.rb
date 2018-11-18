@@ -8,16 +8,15 @@ class Species
 		# assign initial allele likelihood
 		available_genes = gene_pool.select_genes
 
-		NUMBER_OF_ANIMALS.times do
+		NUMBER_OF_ANIMALS.times do |species_number|
 			genome = make_genome(available_genes)
-			@animals << Animal.new(genome)
+			@animals << Animal.new(genome, species_number)
 		end
 	end
 
 	def print
 		@animals[0].print
 	end
-
 
 	# takes a subset of genes and returns a genome for a single animal
 	def make_genome(available_genes)

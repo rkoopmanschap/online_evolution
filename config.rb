@@ -6,21 +6,7 @@ NUMBER_OF_GENERATIONS = 5
 GENERATION_DURATION = 3
 
 STARTING_PLANTS = 1000
-MAX_PLANTS = 10000
-PLANT_GROWTH_RATE = 5
-MAX_PLANTS_PER_POINT = 10
 
 STARTING_INSECTS = 1000
-INSECT_GROWTH_RATE = 10
 
-STARTING_FISH = 10000
-FISH_GROWTH_RATE = 2
-
-
-
-
-100 * 10 = 1000
-max_plant_loss
-toename neemt af naarmate dichter bij max
-afname neemt af naarmate dichter bij min
-
+STARTING_FISH = 1000

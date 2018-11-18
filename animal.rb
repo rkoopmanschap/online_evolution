@@ -1,7 +1,11 @@
 class Animal
 
-	def initialize(genome)
+	attr_reader :species
+	attr_accessor :wounds, :dead, :fitness
+
+	def initialize(genome, species)
 		@genome = genome
+		@species = species
 
 		# Set physical attributes
 		dominant_physical_alleles = genome.dominant_physical_alleles
@@ -19,6 +23,7 @@ class Animal
 
 		@wounds = 0
 		@dead = false
+		@fitness = 0
 
 		dominant_physical_alleles.each do |dominant_physical_allele|
 			@gather_plants 	+= dominant_physical_allele.gather_plants
@@ -53,14 +58,14 @@ class Animal
 		@nutrition_multiplier	= dominant_neural_allele_target.normalized_nutrition_multiplier
 	end
 
-	def calculate_target_score(speed, attack, nutrition)
-		return (speed * @normalized_speed_multiplier) + (attack * @normalized_attack_multiplier) + (nutrition * @normalized_nutrition_multiplier)
+	def calculate_target_score(target_animal)
+		return (target_animal.effective_speed * @speed_multiplier) + (target_animal.effective_attack * @attack_multiplier) + (target_animal.effective_nutrition * @nutrition_multiplier)
 	end
 
 	def choose_defense_action
 		number = rand(100).to_f / 100
 
-		if(number < @run_chance)
+		if(number < @run_cumulative_chance)
 			return :run
 		else
 			return :counter_attack
@@ -68,6 +73,8 @@ class Animal
 	end
 
 	def determine_action
+		return :dead if @dead
+
 		number = rand(100).to_f / 100
 
 		if number < @gather_plants_cumulative_chance then return :gather_plants
@@ -75,6 +82,61 @@ class Animal
 		elsif number < @gather_fish_cumulative_chance then return :gather_fish
 		else return :attack
 		end
+	end
+
+	def effective_camouflage
+		result = @camouflage
+		result = add_wound_effect(result)
+		result = add_random_effect(result)
+		return [result, 0].max
+	end
+
+	def effective_speed
+		result = @speed
+		result = add_wound_effect(result)
+		result = add_random_effect(result)
+		return [result, 0].max
+	end
+
+	def effective_attack
+		result = @attack
+		result = add_wound_effect(result)
+		result = add_random_effect(result)
+		return [result, 0].max
+	end
+
+	def effective_armor
+		result = @armor
+		result = add_wound_effect(result)
+		result = add_random_effect(result)
+		return [result, 0].max
+	end
+
+	def effective_fitness
+		result = @fitness
+		result = add_wound_effect(result)
+		result = add_random_effect(result)
+		return [result, 0].max
+	end
+
+	def effective_gather_plants
+		return @gather_plants
+	end
+
+	def effective_gather_insects
+		return @gather_insects
+	end
+
+	def effective_gather_fish
+		return @gather_fish
+	end
+
+	def effective_nutrition
+		return @nutrition
+	end
+
+	def effective_cost
+		return @cost
 	end
 
 	def print
@@ -101,5 +163,14 @@ class Animal
 	# ===================
 			private
 	# ===================
+
+	def add_wound_effect(value)
+		value * (1 - (0.2 * @wounds))
+	end
+
+	def add_random_effect(value)
+		number = (rand(50).to_f - 25) / 100
+		return value * number
+	end
 
 end

@@ -16,7 +16,7 @@ class GenePool
 		NUMBER_OF_ALLELES.times { |i| @defense_neural_alleles << NeuralAlleleDefense.new(i) }
 	end
 
-	def to_s
+	def print
 		puts "Action Neural Genes:"
 		@action_neural_alleles[0].to_s
 		puts ""
